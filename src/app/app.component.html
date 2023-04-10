@@ -1,0 +1,28 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  
+  <div>
+    <label for="file">File:</label>
+    <input type="file" id="file" (change)="onFileSelected($event)">
+    <button type="button" (click)="onUpload()">Upload</button>
+  </div>
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" formControlName="name" placeholder="Enter name">
+  </div>
+  <button type="submit">Submit</button>
+  <p>Table of contents</p>
+  <div *ngFor="let item of tableOfContents">
+    <label>
+      <input type="checkbox" name="myCheckbox" [value]="item" (change)="selectItem(item['title'])">
+      {{ item['title'] }}
+    </label>
+  </div>
+  <button type="button" (click)="onChecked()">Filter</button>
+  <div *ngif="showFiltered"><p>Filtered contents</p>
+  <div *ngFor="let item of selectedContents">
+      <p>{{item}}</p>
+  </div>
+  <button type="button" (click)="onChecked()">Filter</button>
+  </div>
+
+</form>
